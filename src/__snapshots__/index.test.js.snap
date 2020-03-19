@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`middleware if it does not match a route it should return all subroutes 1`] = `
+"Welcome to my greeting API
+	
+
+[GET]:/greeting/:name - Returns a greeting
+	
+
+[GET]:/greeting - Returns a general greeting
+	
+"
+`;
+
+exports[`middleware returns help message with ?h 1`] = `
+"Returns a greeting
+	name: A word that you would like to be called by
+
+"
+`;
+
+exports[`middleware returns help message with ?help 1`] = `
+"Returns a greeting
+	name: A word that you would like to be called by
+
+"
+`;
