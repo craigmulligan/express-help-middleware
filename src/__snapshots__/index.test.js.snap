@@ -7,7 +7,11 @@ exports[`middleware if it does not match a route it should return all subroutes 
 [GET]:/greeting/:name - Returns a greeting
 	
 
-[GET]:/greeting - Returns a general greeting
+[POST]:/greeting - Creates a greeting
+    
+      body: 
+        name: <string>
+        langauge: <string> default english
 	
 "
 `;
@@ -23,5 +27,15 @@ exports[`middleware returns help message with ?help 1`] = `
 "Returns a greeting
 	    params:
       name: A word that would would like to be called by
+"
+`;
+
+exports[`middleware works with post 1`] = `
+"Creates a greeting
+    
+      body: 
+        name: <string>
+        langauge: <string> default english
+	
 "
 `;

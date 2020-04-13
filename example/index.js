@@ -15,11 +15,18 @@ app.get(
   }
 )
 
-app.get(
+app.post(
   '/greeting',
-  help('Returns a general greeting'),
+  help(
+    `Creates a greeting
+    
+      body: 
+        name: <string>
+        langauge: <string> default english
+    `
+  ),
   function(req, res) {
-    res.send('Hii')
+    res.sendStatus(201)
   }
 )
 

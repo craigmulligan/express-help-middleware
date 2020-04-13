@@ -37,4 +37,13 @@ describe('middleware', () => {
         expect(response.text).toMatchSnapshot()
       })
   })
+
+  test('works with post', () => {
+    return request(app)
+      .post('/greeting?help')
+      .expect(200)
+      .then(response => {
+        expect(response.text).toMatchSnapshot()
+      })
+  })
 })
