@@ -8,33 +8,30 @@ const isHelp = (req, keywords) => {
   })
 }
 
-const help = (options = {}) => (req, res, next) => {
+const help = (message = '') => (req, res, next) => {
+  // message is an string.
+  // the first line is the description
+  // the rest can be anything else.
   const h = isHelp(req, ['help', 'h'])
-  let msg = ''
 
   if (h === false) {
     return next()
   }
-
-  if (!options.params) {
-    options.params = {}
-  }
-
-  const paramsInfo = Object.entries(options.params).reduce((acc, [k, v]) => {
-    return acc + `${k}: ${v}\n`
-  }, ``)
-
+  const description = message.trim().split('\n\n')[0]
+  const body = message.trim().split('\n\n').slice(1).join('\n\n')
+  
   const title = req.get('route')
-    ? `url: ${req.route.path}\n${options.description}`
-    : options.description
+    ? `url: ${req.route.path}\n${description}`
+    : description
 
-  msg = `${title}\n\t${!req.get(HEADER_SIGNATURE) ? paramsInfo : ''}\n`
+  let msg = `${title}\n\t${!req.get(HEADER_SIGNATURE) ? body : ''}\n`
 
   if (!req.route) {
     const routesHelp = listEndpoints(req.app)
       .map(route => {
         const subroutes = route.methods.map(method => {
           const mreq = httpMocks.createRequest({
+            ...req,
             method,
             url: route.path + '?help',
             headers: {
@@ -57,7 +54,6 @@ const help = (options = {}) => (req, res, next) => {
         return subroutes
       })
       .reduce((acc, subroutes) => {
-        // TODO do is it better to ...?
         return [...acc, ...subroutes]
       })
       .reduce((acc, route) => {

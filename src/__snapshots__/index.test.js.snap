@@ -14,14 +14,14 @@ exports[`middleware if it does not match a route it should return all subroutes 
 
 exports[`middleware returns help message with ?h 1`] = `
 "Returns a greeting
-	name: A word that you would like to be called by
-
+	    params:
+      name: A word that would would like to be called by
 "
 `;
 
 exports[`middleware returns help message with ?help 1`] = `
 "Returns a greeting
-	name: A word that you would like to be called by
-
+	    params:
+      name: A word that would would like to be called by
 "
 `;
