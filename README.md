@@ -4,4 +4,4 @@
 npm i express-middleware-help
 ```
 
-See full explanation [here](https://hobochild.com/api-help) and see ./example for and example.
+See full explanation [here](https://hobochild.com/api-help) and ./example for an example.
